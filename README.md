@@ -7,15 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #c5a059; --soft-gray: #f9f9f9; --text: #1a1a1a; }
-        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #fff; color: var(--text); }
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #fff; color: var(--text); overflow-x: hidden; }
         
-        /* Navigation / Header */
         header { padding: 80px 20px; text-align: center; background: var(--soft-gray); border-bottom: 1px solid #eee; }
         h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin: 0; letter-spacing: 4px; text-transform: uppercase; color: var(--text); }
         .tagline { font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-top: 10px; font-weight: 600; }
 
-        /* Search Bot Engine */
-        .search-area { max-width: 700px; margin: -40px auto 60px; padding: 40px; background: #fff; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; }
+        .search-area { max-width: 700px; margin: -40px auto 60px; padding: 40px; background: #fff; border-radius: 15px; box-sizing: border-box; box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; position: relative; z-index: 10; }
         .search-area p { font-style: italic; margin-bottom: 25px; color: #666; }
         .search-input-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
         input[type="text"] { flex: 1; min-width: 280px; padding: 18px 25px; border: 1px solid #ddd; border-radius: 50px; font-size: 1rem; outline: none; transition: 0.3s; }
@@ -23,7 +21,6 @@
         .btn-glow { background: var(--text); color: #fff; border: none; padding: 18px 40px; border-radius: 50px; cursor: pointer; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
         .btn-glow:hover { background: var(--gold); transform: translateY(-2px); }
 
-        /* Visual Showcase */
         .showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 40px 80px; max-width: 1200px; margin: 0 auto; }
         .image-card { border-radius: 20px; overflow: hidden; position: relative; aspect-ratio: 1/1; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .image-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
@@ -41,10 +38,10 @@
     </header>
 
     <section class="search-area">
-        <p>Inserisci ciò che cerchi per la tua bellezza: il nostro motore di ricerca selezionerà il meglio per te su Amazon.</p>
+        <p>Il mio motore di ricerca seleziona per te solo il meglio di Amazon Beauty.</p>
         <div class="search-input-group">
-            <input type="text" id="botSearch" placeholder="Es. Olio corpo seta, scrub caffè, crema illuminante...">
-            <button class="btn-glow" onclick="executeSearch()">Cerca su Amazon</button>
+            <input type="text" id="botSearch" placeholder="Es. Olio illuminante, scrub seta, crema corpo...">
+            <button class="btn-glow" onclick="executeSearch()">Trova su Amazon</button>
         </div>
     </section>
 
@@ -64,18 +61,25 @@
     </div>
 
     <footer>
-        &copy; 2026 Keygap Glow | Official Affiliate Partner | All rights reserved.
+        &copy; 2026 Keygap Glow | Official Amazon Affiliate Partner | link: keygap-21
     </footer>
 
     <script>
         function executeSearch() {
             const query = document.getElementById('botSearch').value;
             if (query) {
-                // SOSTITUISCI CON IL TUO TAG REALE
-                const affiliateTag = "IL_TUO_TAG_AMAZON-21"; 
-                window.open(`https://www.amazon.it/s?k=${encodeURIComponent(query)}&tag=${affiliateTag}`, '_blank');
+                // Il tuo tag è ora integrato
+                const affiliateTag = "keygap-21"; 
+                const url = `https://www.amazon.it/s?k=${encodeURIComponent(query)}&tag=${affiliateTag}`;
+                window.open(url, '_blank');
             }
         }
+        // Permette di premere invio per cercare
+        document.getElementById("botSearch").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                executeSearch();
+            }
+        });
     </script>
 
 </body>
