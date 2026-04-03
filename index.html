@@ -156,36 +156,36 @@
         <h2 class="section-title">Acquista per Categoria</h2>
         <div class="grid">
 
-            <a href="INSERISCI_QUI_IL_TUO_LINK_AMAZON_O_EBAY_PER_IL_VISO" target="_blank" class="card">
+            <a href="https://www.amazon.it/s?k=siero+viso+illuminante+acido+ialuronico&tag=keygap-21" target="_blank" class="card">
                 <img src="main_photo.jpg" alt="Skincare Viso">
                 <div class="card-content">
                     <div>
                         <h3>Viso Effetto Vetro</h3>
                         <p>I sieri illuminanti e le creme idratanti che uso quotidianamente per una pelle perfetta e senza imperfezioni.</p>
                     </div>
-                    <span class="btn-buy">Vedi Prodotti Scontati</span>
+                    <span class="btn-buy">Vedi Offerte</span>
                 </div>
             </a>
 
-            <a href="INSERISCI_QUI_IL_TUO_LINK_AMAZON_O_EBAY_PER_IL_CORPO" target="_blank" class="card">
+            <a href="https://www.amazon.it/s?k=crema+corpo+rassodante+profumata&tag=keygap-21" target="_blank" class="card">
                 <img src="milk_bath.jpg" alt="Cura del Corpo">
                 <div class="card-content">
                     <div>
                         <h3>Body Care Ritual</h3>
-                        <p>Scrub esfolianti e burri per il corpo per una pelle morbidissima, come dopo una spa.</p>
+                        <p>Scrub esfolianti e burri per il corpo per una pelle morbidissima, idratata in profondità e super profumata.</p>
                     </div>
-                    <span class="btn-buy">Vedi Prodotti Scontati</span>
+                    <span class="btn-buy">Vedi Offerte</span>
                 </div>
             </a>
 
-            <a href="INSERISCI_QUI_IL_TUO_LINK_AMAZON_O_EBAY_PER_LE_GAMBE" target="_blank" class="card">
+            <a href="https://www.amazon.it/s?k=olio+illuminante+gambe&tag=keygap-21" target="_blank" class="card">
                 <img src="silk_legs.jpg" alt="Gambe di Seta">
                 <div class="card-content">
                     <div>
                         <h3>Gambe di Seta</h3>
-                        <p>Oli illuminanti, creme rassodanti e tutto il necessario per gambe perfette e luminose tutto l'anno.</p>
+                        <p>Oli illuminanti, creme leviganti e tutto il necessario per gambe perfette, lisce e super idratate tutto l'anno.</p>
                     </div>
-                    <span class="btn-buy">Vedi Prodotti Scontati</span>
+                    <span class="btn-buy">Vedi Offerte</span>
                 </div>
             </a>
 
@@ -193,19 +193,16 @@
     </div>
 
     <script>
-        // Funzione per la ricerca libera che rimanda direttamente ad Amazon
-        // con il tuo tag affiliato (da configurare)
+        // Funzione per la ricerca libera integrata con Amazon Affiliate
         function effettuaRicerca() {
             var query = document.getElementById('searchInput').value;
             if(query) {
-                // Esempio: reindirizza ad Amazon con la ricerca dell'utente
-                // Ricordati di aggiungere il tuo tag affiliato nell'URL!
-                var urlRicerca = "https://www.amazon.it/s?k=" + encodeURIComponent(query) + "&tag=IL_TUO_TAG_AFFILIATO_QUI";
+                var urlRicerca = "https://www.amazon.it/s?k=" + encodeURIComponent(query) + "&tag=keygap-21";
                 window.open(urlRicerca, '_blank');
             }
         }
 
-        // Permette di cercare premendo "Invio" sulla tastiera
+        // Permette di cercare premendo "Invio"
         document.getElementById("searchInput").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 event.preventDefault();
