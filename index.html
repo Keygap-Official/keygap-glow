@@ -13,60 +13,20 @@
         h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin: 0; letter-spacing: 5px; text-transform: uppercase; }
         .tagline { font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-top: 10px; font-weight: 600; }
 
-        /* Dual Search Section */
-        .dual-search-container { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 30px; 
-            max-width: 1000px; 
-            margin: -40px auto 80px; 
-            padding: 0 20px; 
-            position: relative; 
-            z-index: 10;
-        }
-
-        .search-box {
-            background: #fff;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            text-align: center;
-            border: 1px solid #f0f0f0;
-            transition: transform 0.3s ease;
-        }
+        .dual-search-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1000px; margin: -40px auto 80px; padding: 0 20px; position: relative; z-index: 10; }
+        .search-box { background: #fff; padding: 40px 30px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; border: 1px solid #f0f0f0; transition: transform 0.3s ease; }
         .search-box:hover { transform: translateY(-5px); }
         .search-box h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 20px; }
         
         .input-group { display: flex; flex-direction: column; gap: 15px; }
-        input[type="text"] { 
-            width: 100%; 
-            padding: 15px 20px; 
-            border: 1px solid #eee; 
-            border-radius: 30px; 
-            font-size: 0.9rem; 
-            outline: none; 
-            box-sizing: border-box;
-            transition: 0.3s;
-        }
+        input[type="text"] { width: 100%; padding: 15px 20px; border: 1px solid #eee; border-radius: 30px; font-size: 0.9rem; outline: none; box-sizing: border-box; transition: 0.3s; }
         
-        /* Bottoni personalizzati */
-        .btn { 
-            padding: 15px; 
-            border-radius: 30px; 
-            border: none; 
-            color: #fff; 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            cursor: pointer; 
-            transition: 0.3s; 
-        }
+        .btn { padding: 15px; border-radius: 30px; border: none; color: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; }
         .btn-amazon { background: var(--text); }
         .btn-amazon:hover { background: var(--gold); }
         .btn-ebay { background: var(--ebay-blue); }
         .btn-ebay:hover { opacity: 0.8; }
 
-        /* Gallery */
         .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 0 40px 100px; max-width: 1200px; margin: 0 auto; }
         .card { border-radius: 20px; overflow: hidden; position: relative; aspect-ratio: 1/1; }
         .card img { width: 100%; height: 100%; object-fit: cover; }
@@ -117,23 +77,41 @@
     </footer>
 
     <script>
-        // Gestione pressione tasto Invio
+        // Funzione per il "Filtro Invisibile" (Previene cibi e oggetti non beauty)
+        function optimizeQuery(query) {
+            let q = query.trim().toLowerCase();
+            
+            // Se l'utente scrive parole a rischio, forziamo il contesto beauty
+            if (q === "olio" || q === "oli") return "olio corpo estetico";
+            if (q === "burro") return "burro corpo";
+            if (q === "maschera") return "maschera viso";
+            if (q === "siero") return "siero viso illuminante";
+            
+            // Se scrivono "olio" ma con altre parole (es. "olio mandorle"), aggiungiamo "corpo" per sicurezza
+            if (q.includes("olio") && !q.includes("corpo") && !q.includes("viso") && !q.includes("capelli")) {
+                return q + " corpo";
+            }
+            
+            return q;
+        }
+
         document.getElementById("amazonIn").addEventListener("keypress", (e) => { if (e.key === "Enter") searchAmazon(); });
         document.getElementById("ebayIn").addEventListener("keypress", (e) => { if (e.key === "Enter") searchEbay(); });
 
         function searchAmazon() {
-            const q = document.getElementById('amazonIn').value;
-            if (q) {
-                // Il parametro &i=beauty forza la ricerca nella categoria Bellezza di Amazon
-                const url = `https://www.amazon.it/s?k=${encodeURIComponent(q)}&i=beauty&tag=keygap-21`;
+            let rawQuery = document.getElementById('amazonIn').value;
+            if (rawQuery) {
+                let smartQuery = optimizeQuery(rawQuery);
+                const url = `https://www.amazon.it/s?k=${encodeURIComponent(smartQuery)}&i=beauty&tag=keygap-21`;
                 window.open(url, '_blank');
             }
         }
+
         function searchEbay() {
-            const q = document.getElementById('ebayIn').value;
-            if (q) {
-                // Il parametro &_sacat=26395 forza la ricerca nella categoria Salute e Bellezza di eBay
-                const url = `https://www.ebay.it/sch/i.html?_nkw=${encodeURIComponent(q)}&_sacat=26395&mkcid=1&mkrid=724-53478-19255-0&siteid=101&campid=5339145312&customid=keygapglow&toolid=10001&mkevt=1`;
+            let rawQuery = document.getElementById('ebayIn').value;
+            if (rawQuery) {
+                let smartQuery = optimizeQuery(rawQuery);
+                const url = `https://www.ebay.it/sch/i.html?_nkw=${encodeURIComponent(smartQuery)}&_sacat=26395&mkcid=1&mkrid=724-53478-19255-0&siteid=101&campid=5339145312&customid=keygapglow&toolid=10001&mkevt=1`;
                 window.open(url, '_blank');
             }
         }
