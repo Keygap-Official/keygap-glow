@@ -300,11 +300,11 @@
             }
         }
 
-        // Funzione per la ricerca libera integrata con Amazon Affiliate
+        // Funzione per la ricerca libera integrata con Amazon Affiliate - BLOCCATA SUL REPARTO BEAUTY
         function effettuaRicerca() {
             var query = document.getElementById('searchInput').value;
             if(query) {
-                var urlRicerca = "https://www.amazon.it/s?k=" + encodeURIComponent(query) + "&tag=keygap-21";
+                var urlRicerca = "https://www.amazon.it/s?k=" + encodeURIComponent(query) + "&i=beauty&tag=keygap-21";
                 window.open(urlRicerca, '_blank');
             }
         }
