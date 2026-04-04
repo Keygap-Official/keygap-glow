@@ -32,10 +32,39 @@
             margin-top: 10px;
         }
 
+        /* Switch Per Lei / Per Lui */
+        .gender-toggle {
+            text-align: center;
+            margin: 30px 0 10px;
+        }
+        .gender-btn {
+            background: transparent;
+            color: #777;
+            border: 2px solid #ccc;
+            padding: 10px 30px;
+            margin: 0 10px;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .gender-btn.active {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+        .gender-btn:hover:not(.active) {
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+
         /* Barra di Ricerca Libera */
         .search-section { 
             text-align: center; 
-            padding: 40px 20px 20px; 
+            padding: 20px 20px 40px; 
         }
         .search-bar { 
             padding: 15px 20px; 
@@ -64,11 +93,24 @@
         }
         .search-btn:hover { background: #d4af37; }
 
+        /* Gestione Dissolvenza (Fade Effect) */
+        .fade-section {
+            display: none; /* Nascosto di default */
+            animation: fadeIn 0.6s ease forwards;
+        }
+        .fade-section.active {
+            display: block; /* Mostrato solo se attivo */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Griglia Categorie Prodotti */
         .categories-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 20px 40px;
         }
         .section-title {
             text-align: center;
@@ -144,55 +186,120 @@
 
     <header>
         <h1>Keygap Glow</h1>
-        <p>Il mio rituale di bellezza segreto. Prodotti premium a prezzi esclusivi.</p>
+        <p>Il rituale di bellezza premium. Prodotti selezionati a prezzi esclusivi.</p>
     </header>
 
+    <div class="gender-toggle">
+        <button id="btn-donna" class="gender-btn active" onclick="switchSection('donna')">Per Lei</button>
+        <button id="btn-uomo" class="gender-btn" onclick="switchSection('uomo')">Per Lui</button>
+    </div>
+
     <div class="search-section">
-        <input type="text" class="search-bar" id="searchInput" placeholder="Cerca un prodotto (es. crema viso, siero)...">
+        <input type="text" class="search-bar" id="searchInput" placeholder="Cerca un prodotto su Amazon...">
         <button class="search-btn" onclick="effettuaRicerca()">Cerca</button>
     </div>
 
     <div class="categories-container">
-        <h2 class="section-title">Acquista per Categoria</h2>
-        <div class="grid">
-
-            <a href="https://www.amazon.it/s?k=siero+viso+illuminante+acido+ialuronico&tag=keygap-21" target="_blank" class="card">
-                <img src="main_photo.jpg" alt="Skincare Viso">
-                <div class="card-content">
-                    <div>
-                        <h3>Viso Effetto Vetro</h3>
-                        <p>I sieri illuminanti e le creme idratanti che uso quotidianamente per una pelle perfetta e senza imperfezioni.</p>
+        
+        <div id="sezione-donna" class="fade-section active">
+            <h2 class="section-title">La Selezione Femminile</h2>
+            <div class="grid">
+                <a href="https://www.amazon.it/s?k=siero+viso+illuminante+acido+ialuronico&tag=keygap-21" target="_blank" class="card">
+                    <img src="main_photo.jpg" alt="Skincare Viso">
+                    <div class="card-content">
+                        <div>
+                            <h3>Viso Effetto Vetro</h3>
+                            <p>I sieri illuminanti e le creme idratanti che uso quotidianamente per una pelle perfetta e senza imperfezioni.</p>
+                        </div>
+                        <span class="btn-buy">Vedi Offerte</span>
                     </div>
-                    <span class="btn-buy">Vedi Offerte</span>
-                </div>
-            </a>
+                </a>
 
-            <a href="https://www.amazon.it/s?k=crema+corpo+rassodante+profumata&tag=keygap-21" target="_blank" class="card">
-                <img src="milk_bath.jpg" alt="Cura del Corpo">
-                <div class="card-content">
-                    <div>
-                        <h3>Body Care Ritual</h3>
-                        <p>Scrub esfolianti e burri per il corpo per una pelle morbidissima, idratata in profondità e super profumata.</p>
+                <a href="https://www.amazon.it/s?k=crema+corpo+rassodante+profumata&tag=keygap-21" target="_blank" class="card">
+                    <img src="milk_bath.jpg" alt="Cura del Corpo">
+                    <div class="card-content">
+                        <div>
+                            <h3>Body Care Ritual</h3>
+                            <p>Scrub esfolianti e burri per il corpo per una pelle morbidissima, idratata in profondità e super profumata.</p>
+                        </div>
+                        <span class="btn-buy">Vedi Offerte</span>
                     </div>
-                    <span class="btn-buy">Vedi Offerte</span>
-                </div>
-            </a>
+                </a>
 
-            <a href="https://www.amazon.it/s?k=olio+illuminante+gambe&tag=keygap-21" target="_blank" class="card">
-                <img src="silk_legs.jpg" alt="Gambe di Seta">
-                <div class="card-content">
-                    <div>
-                        <h3>Gambe di Seta</h3>
-                        <p>Oli illuminanti, creme leviganti e tutto il necessario per gambe perfette, lisce e super idratate tutto l'anno.</p>
+                <a href="https://www.amazon.it/s?k=olio+illuminante+gambe&tag=keygap-21" target="_blank" class="card">
+                    <img src="silk_legs.jpg" alt="Gambe di Seta">
+                    <div class="card-content">
+                        <div>
+                            <h3>Gambe di Seta</h3>
+                            <p>Oli illuminanti, creme leviganti e tutto il necessario per gambe perfette, lisce e super idratate tutto l'anno.</p>
+                        </div>
+                        <span class="btn-buy">Vedi Offerte</span>
                     </div>
-                    <span class="btn-buy">Vedi Offerte</span>
-                </div>
-            </a>
-
+                </a>
+            </div>
         </div>
+
+        <div id="sezione-uomo" class="fade-section">
+            <h2 class="section-title">Men's Grooming & Care</h2>
+            <div class="grid">
+                <a href="https://www.amazon.it/s?k=crema+viso+uomo+antirughe+idratante&tag=keygap-21" target="_blank" class="card">
+                    <img src="uomo_viso.jpg" alt="Skincare Uomo" onerror="this.src='https://via.placeholder.com/350x250?text=Foto+Viso+Uomo'">
+                    <div class="card-content">
+                        <div>
+                            <h3>Skincare Viso Uomo</h3>
+                            <p>Creme idratanti, sieri anti-fatica e detergenti purificanti progettati per le esigenze della pelle maschile.</p>
+                        </div>
+                        <span class="btn-buy">Vedi Offerte</span>
+                    </div>
+                </a>
+
+                <a href="https://www.amazon.it/s?k=olio+barba+shampoo+rinforzante&tag=keygap-21" target="_blank" class="card">
+                    <img src="uomo_barba.jpg" alt="Cura Barba e Capelli" onerror="this.src='https://via.placeholder.com/350x250?text=Foto+Barba+Capelli'">
+                    <div class="card-content">
+                        <div>
+                            <h3>Barba & Capelli</h3>
+                            <p>Oli emollienti per una barba impeccabile e shampoo rinforzanti per capelli sani, forti e luminosi.</p>
+                        </div>
+                        <span class="btn-buy">Vedi Offerte</span>
+                    </div>
+                </a>
+
+                <a href="https://www.amazon.it/s?k=bagnoschiuma+uomo+lusso+profumo&tag=keygap-21" target="_blank" class="card">
+                    <img src="uomo_corpo.jpg" alt="Body Care Uomo" onerror="this.src='https://via.placeholder.com/350x250?text=Foto+Corpo+Uomo'">
+                    <div class="card-content">
+                        <div>
+                            <h3>Body & Fragrance</h3>
+                            <p>Bagnoschiuma premium e fragranze iconiche. Prodotti di altissima qualità per la doccia e il corpo.</p>
+                        </div>
+                        <span class="btn-buy">Vedi Offerte</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
     </div>
 
     <script>
+        // Funzione per attivare la dissolvenza tra le sezioni Lei/Lui
+        function switchSection(target) {
+            // Reset bottoni
+            document.getElementById('btn-donna').classList.remove('active');
+            document.getElementById('btn-uomo').classList.remove('active');
+            
+            // Reset sezioni
+            document.getElementById('sezione-donna').classList.remove('active');
+            document.getElementById('sezione-uomo').classList.remove('active');
+
+            // Attiva quello selezionato
+            if(target === 'donna') {
+                document.getElementById('btn-donna').classList.add('active');
+                document.getElementById('sezione-donna').classList.add('active');
+            } else {
+                document.getElementById('btn-uomo').classList.add('active');
+                document.getElementById('sezione-uomo').classList.add('active');
+            }
+        }
+
         // Funzione per la ricerca libera integrata con Amazon Affiliate
         function effettuaRicerca() {
             var query = document.getElementById('searchInput').value;
